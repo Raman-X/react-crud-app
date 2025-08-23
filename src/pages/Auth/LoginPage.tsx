@@ -52,12 +52,18 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-gray-100">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="">
-          <fieldset className="border border-gray-300 rounded-md px-10 py-5 space-y-8 w-144">
+        <form
+          onSubmit={form.handleSubmit(onSubmit)}
+          className="flex w-200 bg-gradient-to-r from-gray-500 to-white rounded-md shadow-2xl"
+        >
+          <fieldset className="border border-gray-300 px-12 py-8 space-y-10 w-100 max-w-screen bg-white">
             <div className="text-center text-xl font-bold">
-              Welcome !! Please login to continue
+              Welcome !!
+              <div className="font-light text-sm text-gray-500/80">
+                Please login to continue
+              </div>
             </div>
             <FormField
               control={form.control}
@@ -68,7 +74,6 @@ const LoginPage = () => {
                   <FormControl>
                     <Input placeholder="Type your username" {...field} />
                   </FormControl>
-
                   <FormMessage />
                 </FormItem>
               )}
@@ -106,7 +111,9 @@ const LoginPage = () => {
                 </FormItem>
               )}
             />
-            <Button type="submit">Submit</Button>
+            <Button type="submit" className="w-full cursor-pointer">
+              Login
+            </Button>
           </fieldset>
         </form>
       </Form>
