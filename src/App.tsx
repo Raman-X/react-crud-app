@@ -1,9 +1,16 @@
-import { Button } from "./components/ui/button";
+import { Route, Routes } from "react-router";
+import LoginPage from "./pages/Auth/LoginPage";
+import RegisterPage from "./pages/Auth/RegisterPage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
     <>
-      <Button variant="outline">Hello</Button>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
+      </Routes>
     </>
   );
 }
