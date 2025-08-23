@@ -52,10 +52,13 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="w-144">
+    <div className="min-h-screen flex items-center justify-center">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-          <fieldset className="border border-gray-300 rounded-md p-4 space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="">
+          <fieldset className="border border-gray-300 rounded-md px-10 py-5 space-y-8 w-144">
+            <div className="text-center text-xl font-bold">
+              Welcome !! Please login to continue
+            </div>
             <FormField
               control={form.control}
               name="username"
