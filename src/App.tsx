@@ -6,6 +6,10 @@ import RegisterPage from "./pages/Auth/RegisterPage";
 import HomePage from "./pages/HomePage";
 import ProtectedRoutes from "./pages/ProtectedRoutes";
 
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     // Read from localStorage on first load
@@ -18,15 +22,18 @@ function App() {
     localStorage.setItem("isAuthenticated", String(isAuthenticated));
   }, [isAuthenticated]);
   return (
-    <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
-      <Routes>
-        <Route element={<ProtectedRoutes />}>
-          <Route path="/" element={<HomePage />} />
-        </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-      </Routes>
-    </AuthContext.Provider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
+        <Routes>
+          <Route element={<ProtectedRoutes />}>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/dashboard" element={<HomePage />} />
+          </Route>
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+        </Routes>
+      </AuthContext.Provider>
+    </QueryClientProvider>
   );
 }
 

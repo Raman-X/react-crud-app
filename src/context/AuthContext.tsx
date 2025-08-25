@@ -1,9 +1,14 @@
-import { createContext } from "react";
+import { createContext, Dispatch, SetStateAction } from "react";
 
-// we'll pass an object with both state and updater
-const AuthContext = createContext({
+interface AuthContextType {
+  isAuthenticated: boolean;
+  setIsAuthenticated: Dispatch<SetStateAction<boolean>>;
+}
+
+// Provide a default value just to satisfy TS (won’t really be used)
+const AuthContext = createContext<AuthContextType>({
   isAuthenticated: false,
-  setIsAuthenticated: () => {},
+  setIsAuthenticated: () => {}, // placeholder
 });
 
 export default AuthContext;

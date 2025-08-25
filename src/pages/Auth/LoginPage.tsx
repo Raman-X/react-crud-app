@@ -41,7 +41,7 @@ const LoginPage = () => {
     // console.log(values);
     if (values.username === "admin" && values.password === "admin") {
       setIsAuthenticated(true);
-      navigate("/");
+      navigate("/dashboard");
     } else {
       form.setError("password", {
         type: "manual",
