@@ -9,9 +9,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import AuthContext from "@/context/AuthContext";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router";
 import { z } from "zod";
@@ -23,6 +24,7 @@ const formSchema = z.object({
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const { setIsAuthenticated } = useContext(AuthContext);
   const navigate = useNavigate();
 
   // 1. Define your form.
@@ -38,6 +40,7 @@ const LoginPage = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     // console.log(values);
     if (values.username === "admin" && values.password === "admin") {
+      setIsAuthenticated(true);
       navigate("/");
     } else {
       form.setError("password", {
